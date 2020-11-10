@@ -39,8 +39,8 @@ function Cheesecake({ cheesecale }) {
 export default function CheesecakeList({ cheesecakes }) {
   return (
     <PizzaGridStyles>
-      {cheesecakes.map(torta => (
-        <Cheesecake key={torta.id} cheesecale={torta} />
+      {cheesecakes.map((torta, index) => (
+        <Cheesecake key={index} cheesecale={torta} />
       ))}
     </PizzaGridStyles>
   )
