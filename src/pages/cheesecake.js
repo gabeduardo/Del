@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import CheesecakeList from '../components/CheesecakeLists'
 
 export default function cheesecake({ data }) {
   // trabajndo con la data del query
@@ -7,7 +8,7 @@ export default function cheesecake({ data }) {
   const cheesecakes = data.cheesecakes.nodes
   return (
     <>
-      <p>{cheesecakes.length}</p>
+      <CheesecakeList cheesecakes={cheesecakes} />
     </>
   )
 }
@@ -18,12 +19,15 @@ export const query = graphql`
       nodes {
         name
         price
+        slug {
+          current
+        }
         category {
           name
         }
         image {
           asset {
-            fluid(maxWidth: 400) {
+            fluid(maxWidth: 200) {
               ...GatsbySanityImageFluid
             }
           }
