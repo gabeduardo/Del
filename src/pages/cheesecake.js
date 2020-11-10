@@ -27,6 +27,9 @@ export const query = graphql`
         }
         image {
           asset {
+            fixed(width: 300, height: 200) {
+              ...GatsbySanityImageFixed
+            }
             fluid(maxWidth: 200) {
               ...GatsbySanityImageFluid
             }
