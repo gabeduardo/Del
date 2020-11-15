@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { graphql, Link, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 const NavStyles = styled.nav`
@@ -45,17 +46,30 @@ const NavStyles = styled.nav`
 `
 
 export default function Nav() {
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      fileName: file(relativePath: { eq: "Logo.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
   return (
     <NavStyles>
       <ul>
         <li>
-          <Link to="/cheesecake/">Inicio</Link>
+          <Link to="/index/">Inicio</Link>
         </li>
         <li>
           <Link to="/cheesecake/">Cheesecakes</Link>
         </li>
         <li>
-          <Link to="/cheesecake/">LOGO</Link>
+          <Link to="/index/">
+            <Img fluid={data.fileName.childImageSharp.fluid} />
+          </Link>
         </li>
         <li>
           <Link to="/coffee/">Café</Link>

@@ -71,7 +71,7 @@ export default function CategoryFilter({ activeTopping }) {
     }
   `)
   // Count how many categories are in each category
-  const toppingsWithCounts = countCategories(categories.nodes)
+  const categoriesWithCounts = countCategories(categories.nodes)
   // Loop over the list of category and display the category and the count of categories in that category
   // Link it up.. ...  . . .
   return (
@@ -80,7 +80,7 @@ export default function CategoryFilter({ activeTopping }) {
         <span className="name">All</span>
         <span className="count">{categories.nodes.length}</span>
       </Link>
-      {toppingsWithCounts.map(category => (
+      {categoriesWithCounts.map(category => (
         <Link
           to={`/category/${category.name}`}
           key={category.id}
