@@ -76,7 +76,7 @@ export default function CategoryFilter({ activeTopping }) {
   // Link it up.. ...  . . .
   return (
     <CategoryStiles>
-      <Link to="/categories">
+      <Link to="/cheesecake">
         <span className="name">All</span>
         <span className="count">{categories.nodes.length}</span>
       </Link>
