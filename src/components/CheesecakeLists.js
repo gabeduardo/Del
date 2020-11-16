@@ -3,16 +3,16 @@ import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-const PizzaGridStyles = styled.div`
+const CheeseCakeGridStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
-  grid-auto-rows: auto auto 200px;
+  grid-auto-rows: auto auto 245px;
 `
 
 const PizzaStyles = styled.div`
   display: grid;
-  /* Take your row sizing not from the pizzaStyles div, but from the  PizzaGridStyles grid */
+  /* Take your row sizing not from the pizzaStyles div, but from the  CheeseCakeGridStyles grid */
   @supports not (grid-template-rows: subgrid) {
     --rows: auto auto 1fr;
   }
@@ -38,10 +38,10 @@ function Cheesecake({ cheesecale }) {
 }
 export default function CheesecakeList({ cheesecakes }) {
   return (
-    <PizzaGridStyles>
+    <CheeseCakeGridStyles>
       {cheesecakes.map((torta, index) => (
         <Cheesecake key={index} cheesecale={torta} />
       ))}
-    </PizzaGridStyles>
+    </CheeseCakeGridStyles>
   )
 }

@@ -31,6 +31,34 @@ async function turnCheesecakeIntroPages({ graphql, actions }) {
   })
 }
 
+async function filter({ graphql, actions }) {
+  // 1. Get the template
+  const Filtertemplate = path.resolve('./src/pages/cheesecake.js')
+  // 2. query all the categories
+  const { data } = await graphql(`
+    query {
+      categories: allSanityCategory {
+        nodes {
+          name
+          id
+        }
+      }
+    }
+  `)
+
+  // 3. createPage for that topping
+  data.categories.nodes.forEach(category => {
+    actions.createPage({
+      path: `/category/${category.name}`,
+      component: Filtertemplate,
+      context: {
+        category: category.name,
+      },
+    })
+  })
+  // 4. Pass topping data to pizza.js
+}
+
 exports.createPages = async function (params) {
-  await turnCheesecakeIntroPages(params)
+  await Promise.all([turnCheesecakeIntroPages(params), filter(params)])
 }

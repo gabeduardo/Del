@@ -5,6 +5,7 @@ import CategoryFilter from '../components/CategoryFilter'
 
 export default function cheesecake({ data }) {
   // trabajndo con la data del query
+  console.log(data)
 
   const cheesecakes = data.cheesecakes.nodes
   return (
@@ -16,8 +17,10 @@ export default function cheesecake({ data }) {
 }
 
 export const query = graphql`
-  query MyQuery {
-    cheesecakes: allSanityCheesecake {
+  query MyQuery($category: [String]) {
+    cheesecakes: allSanityCheesecake(
+      filter: { category: { elemMatch: { name: { in: $category } } } }
+    ) {
       nodes {
         name
         price
