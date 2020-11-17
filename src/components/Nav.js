@@ -78,7 +78,7 @@ export default function Nav() {
           <Link to="/coffee/">Café</Link>
         </li>
         <li>
-          <Link to="/coffee/">Realizar un pedido</Link>
+          <Link to="/order/">Realizar un pedido</Link>
         </li>
       </ul>
     </NavStyles>
