@@ -16,7 +16,25 @@ export default function useCheese({ cheesecakes, values }) {
 
   // 2. Make a function add things to order
   function addToOrder(orderedPizza) {
-    setOrder([...order, orderedPizza])
+    const originalArray = [...order, orderedPizza]
+
+    const arrayHashmap = originalArray.reduce((obj, item) => {
+      obj[item.id]
+        ? (obj[item.id].price = obj[item.id].price + orderedPizza.price)
+        : (obj[item.id] = { ...item })
+      return obj
+    }, {})
+
+    const mergedArray = Object.values(arrayHashmap)
+    // console.log(mergedArray)
+    const nuevaTorta = mergedArray.find(torta => torta.id === orderedPizza.id)
+    // console.log(nuevaTorta)
+
+    // console.log(orderedPizza)
+    // console.log(order)
+
+    setOrder([...mergedArray])
+    console.log(order)
   }
   // 3. Make a function remove things from order
   function removeFromOrder(index) {

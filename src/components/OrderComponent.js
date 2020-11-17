@@ -11,14 +11,18 @@ export default function OrderComponent({ order, cake, removeFromOrder }) {
         const cheesecake = cake.find(torta => torta.id === singleOrder.id)
         return (
           <MenuItemStyles key={`${singleOrder.id}-${index}`}>
-            <Img fluid={cheesecake.image.asset.fluid} />
-            <h2>{cheesecake.name}</h2>
+            <Img fluid={singleOrder.image.asset.fluid} />
+            <h2>
+              <span>{singleOrder.price / cheesecake.price} </span>
+              {singleOrder.name}{' '}
+            </h2>
+
             <p>
-              {formatMoney(cheesecake.price)}
+              {formatMoney(singleOrder.price)}
               <button
                 type="button"
                 className="remove"
-                title={`Remove ${cheesecake.name} from Order`}
+                title={`Remove ${singleOrder.name} from Order`}
                 onClick={() => removeFromOrder(index)}
               >
                 &times;
