@@ -45,7 +45,7 @@ export default function OrderPage({ data }) {
             onChange={updateValue}
           />
 
-          <label htmlFor="tetefono">Teléfono</label>
+          <label htmlFor="telefono">Teléfono</label>
           <input
             type="text"
             name="telefono"
