@@ -15,17 +15,30 @@ import calculateOrderTotal from '../utils/calculateOrderTotal'
 // import calculateOrderTotal from '../utils/calculateOrderTotal'
 
 export default function OrderPage({ data }) {
-  const cheesecakes = data.cheesecakes.nodes
+  const pizzas = data.cheesecakes.nodes
   const { values, updateValue } = useForm({
     name: '',
     email: '',
-    telefono: '',
   })
-  const { order, addToOrder, removeFromOrder } = useCheese(cheesecakes)
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = useCheese({
+    pizzas,
+    values,
+  })
+  if (message) {
+    return <p>{message}</p>
+  }
 
   return (
     <>
-      <OrderStyles>
+      <OrderStyles onSubmit={submitOrder}>
         <fieldset>
           <legend>Datos:</legend>
           <label htmlFor="name">Nombre</label>
@@ -57,7 +70,7 @@ export default function OrderPage({ data }) {
 
         <fieldset className="menu">
           <legend>Menú</legend>
-          {cheesecakes.map(cake => (
+          {pizzas.map(cake => (
             <MenuItemStyles key={cake.id}>
               <Img fluid={cake.image.asset.fluid} />
               <div>
@@ -81,15 +94,19 @@ export default function OrderPage({ data }) {
           <OrderComponent
             order={order}
             removeFromOrder={removeFromOrder}
-            cake={cheesecakes}
+            cake={pizzas}
           />
         </fieldset>
         <fieldset>
           <h3>
             {' '}
             El monto total de tu orden es:{' '}
-            {formatMoney(calculateOrderTotal(order, cheesecakes))}
+            {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
+          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Placing Order...' : 'Order Ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>

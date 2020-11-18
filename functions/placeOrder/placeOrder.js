@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
   // Test send an email
   const info = await transporter.sendMail({
     from: "Slick's Slices <slick@example.com>",
-    to: 'orders@example.com',
+    to: 'gemcirelli@gmail.com',
     subject: 'New order!',
     html: `<p>Your new pizza order is here!</p>`,
   })
