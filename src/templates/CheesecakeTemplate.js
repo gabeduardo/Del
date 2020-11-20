@@ -4,25 +4,52 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 const CakeGrid = styled.div`
+   display: grid;
+grid-template-columns: 1fr 1fr ;
+  grid-gap: 3rem;
+
+  }
+
+  @media (max-width: 575px) {
+
+
+    grid-template-columns: 1fr;
+    
+ 
+}
+`
+
+const ItemGrid = styled.div`
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  h2 {
+    font-size: 1em;
+  }
+
+  #descripcion {
+    grid-column: span 3;
+  }
+  .precio {
+    color: var(--green);
+  }
 `
 
 export default function SingleCheesecakePage({ data }) {
   return (
     <CakeGrid>
       <Img fluid={data.cheesecake.image.asset.fluid} />
-
-      <div>
+      <ItemGrid>
         <h2>{data.cheesecake.name}</h2>
         {data.cheesecake.category.map(categoria => (
-          <h3> Categoría: {categoria.name}</h3>
+          <h3 key={data.cheesecake.id}> Categoría: {categoria.name}</h3>
         ))}
 
-        <p>Precio:</p>
-        <p>{data.cheesecake.price}</p>
-      </div>
+        <p id="descripcion">{data.cheesecake.description}</p>
+
+        <p className="precio"> Precio:{data.cheesecake.price} $</p>
+      </ItemGrid>
     </CakeGrid>
   )
 }
@@ -41,6 +68,7 @@ export const query = graphql`
           }
         }
       }
+      description
       category {
         name
       }

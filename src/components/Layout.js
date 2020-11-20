@@ -7,6 +7,7 @@ import GlobalStyles from '../styles/globalStyles'
 import 'normalize.css'
 
 import stripes from '../assets/images/stripe.svg'
+import Typography from '../styles/Typography'
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
@@ -42,6 +43,7 @@ export default function Layout({ children }) {
   return (
     <>
       <GlobalStyles />
+      <Typography />
       <SiteBorderStyles>
         <ContentSTyles>
           <Nav />

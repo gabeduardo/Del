@@ -80,6 +80,7 @@ export default function useCheese({ pizzas, values }) {
 
     // check if everything worked
     if (res.status >= 400 && res.status < 600) {
+      console.log('ERROR PAPU LINCE')
       setLoading(false) // turn off loading
       setError(text.message)
     } else {

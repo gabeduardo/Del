@@ -13,17 +13,19 @@ const CategoryStiles = styled.div`
     grid-gap: 0 1rem;
     align-items: center;
     padding: 5px;
-    background: var(--grey);
+    background: var(--pinky);
     border-radius: 2px;
     text-decoration: none;
     font-size: clamp(1.5rem, 1.4vw, 2.5rem);
     .count {
       background: white;
+      color:black;
       padding: 2px 5px;
     }
     &[aria-current='page'] {
       background: var(--yellow);
-    }
+      color:white;
+    },
   }
 `
 
@@ -77,7 +79,7 @@ export default function CategoryFilter({ activeTopping }) {
   return (
     <CategoryStiles>
       <Link to="/cheesecake">
-        <span className="name">All</span>
+        <span className="name">Todas</span>
         <span className="count">{categories.nodes.length}</span>
       </Link>
       {categoriesWithCounts.map(category => (

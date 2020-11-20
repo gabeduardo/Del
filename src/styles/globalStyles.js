@@ -6,9 +6,11 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --red: #FF4949;
     --black: #2E2E2E;
-    --yellow: #ffc600;
+    --yellow: #db3834;
     --white: #fff;
     --grey: #efefef;
+    --pinky: #f7e3e1;
+    --green: #197a01;
   }
   html {
    

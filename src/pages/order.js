@@ -39,7 +39,7 @@ export default function OrderPage({ data }) {
   return (
     <>
       <OrderStyles onSubmit={submitOrder}>
-        <fieldset>
+        <fieldset disabled={loading}>
           <legend>Datos:</legend>
           <label htmlFor="name">Nombre</label>
           <input
@@ -68,7 +68,7 @@ export default function OrderPage({ data }) {
           />
         </fieldset>
 
-        <fieldset className="menu">
+        <fieldset className="menu" disabled={loading}>
           <legend>Menú</legend>
           {pizzas.map(cake => (
             <MenuItemStyles key={cake.id}>
@@ -89,7 +89,7 @@ export default function OrderPage({ data }) {
           ))}
         </fieldset>
 
-        <fieldset className="order">
+        <fieldset className="order" disabled={loading}>
           <legend>Orden:</legend>
           <OrderComponent
             order={order}
@@ -97,7 +97,7 @@ export default function OrderPage({ data }) {
             cake={pizzas}
           />
         </fieldset>
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>
             {' '}
             El monto total de tu orden es:{' '}
@@ -105,7 +105,7 @@ export default function OrderPage({ data }) {
           </h3>
           <div>{error ? <p>Error: {error}</p> : ''}</div>
           <button type="submit" disabled={loading}>
-            {loading ? 'Placing Order...' : 'Order Ahead'}
+            {loading ? 'Realizando pedido...' : 'Realizar pedido'}
           </button>
         </fieldset>
       </OrderStyles>

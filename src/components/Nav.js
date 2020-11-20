@@ -42,8 +42,35 @@ const NavStyles = styled.nav`
   a {
     font-size: 3rem;
     text-decoration: none;
-    &:hover {
+    display:block &:hover {
       color: var(--red);
+    }
+
+    @media (max-width: 800px) {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    --columns: 4;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--grey);
+    padding-bottom: 2rem;
+    ul {
+      grid-template-rows: auto auto;
+      grid-template-columns: repeat(var(--columns), 1fr);
+      justify-items: center;
+    }
+    .logo-item {
+      order: 0;
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 500px) {
+    --columns: 2;
+    .logo-item {
+      order: 0;
+      grid-column: 1 / -1;
     }
   }
 `
@@ -53,8 +80,10 @@ export default function Nav() {
     query HeaderQuery {
       fileName: file(relativePath: { eq: "Logo.png" }) {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
+          fixed(width: 200, height: 112) {
+            # Specify a fixed image and fragment.
+            # The default width is 400 pixels
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -67,15 +96,15 @@ export default function Nav() {
           <Link to="/index/">Inicio</Link>
         </li>
         <li>
-          <Link to="/cheesecake/">Cheesecakes</Link>
+          <Link to="/cheesecake/">Catálogo</Link>
         </li>
-        <li>
+        <li className="logo-item">
           <Link to="/index/">
-            <Img fluid={data.fileName.childImageSharp.fluid} />
+            <Img fixed={data.fileName.childImageSharp.fixed} />
           </Link>
         </li>
         <li>
-          <Link to="/coffee/">Café</Link>
+          <Link to="/coffee/">Contacto</Link>
         </li>
         <li>
           <Link to="/order/">Realizar un pedido</Link>

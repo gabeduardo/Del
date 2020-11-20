@@ -2,8 +2,8 @@ const nodemailer = require('nodemailer')
 
 function generateOrderEmail({ order, total }) {
   return `<div>
-    <h2>Your Recent Order for ${total}</h2>
-    <p>Please start walking over, we will have your order ready in the next 20 mins.</p>
+    <h2>CheesecakeDeli</h2>
+    <p>Gracias por realizar tu pedido, un miembro de nuestro equipo se pondrá pronto en contacto contigo.</p>
     <ul>
       ${order
         .map(
@@ -14,7 +14,7 @@ function generateOrderEmail({ order, total }) {
         )
         .join('')}
     </ul>
-    <p>Your total is <strong>$${total}</strong> due at pickup</p>
+    <p>El monto total de tu pedido es  <strong>$${total}</strong> </p>
     <style>
         ul {
           list-style: none;
@@ -53,9 +53,19 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: `Oops! You are missing the ${field} field`,
+          message: `Vaya, al parecer te faltó rellenar el campo: ${field} field`,
         }),
       }
+    }
+  }
+
+  // make sure they actually have items in that order
+  if (!body.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Selecciona Productos para realizar tu pedido`,
+      }),
     }
   }
 
@@ -63,7 +73,7 @@ exports.handler = async (event, context) => {
   const info = await transporter.sendMail({
     from: "Slick's Slices <slick@example.com>",
     to: `${body.name} <${body.email}>, orders@example.com`,
-    subject: 'New order!',
+    subject: 'Pedido CheesecakeDeli',
     html: generateOrderEmail({ order: body.order, total: body.total }),
   })
   return {
