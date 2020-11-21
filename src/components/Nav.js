@@ -36,6 +36,7 @@ const NavStyles = styled.nav`
     }
     &:hover {
       --rotate: -3.5deg;
+      color: var(--red);
     }
   }
 
@@ -93,18 +94,18 @@ export default function Nav() {
     <NavStyles>
       <ul>
         <li>
-          <Link to="/index/">Inicio</Link>
+          <Link to="/">Inicio</Link>
         </li>
         <li>
           <Link to="/cheesecake/">Catálogo</Link>
         </li>
         <li className="logo-item">
-          <Link to="/index/">
+          <Link to="/">
             <Img fixed={data.fileName.childImageSharp.fixed} />
           </Link>
         </li>
         <li>
-          <Link to="/coffee/">Contacto</Link>
+          <Link to="/contacto/">Contacto</Link>
         </li>
         <li>
           <Link to="/order/">Realizar un pedido</Link>

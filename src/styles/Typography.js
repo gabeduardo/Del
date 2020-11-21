@@ -1,11 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
 import font from '../assets/fonts/EmilysCandy-Regular.ttf'
-import font2 from '../assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf'
 
 const Typography = createGlobalStyle`
   @font-face {
-    font-family: FrenchFries;
+    font-family: CandyFont;
     src: url(${font});
   }
   @font-face {
@@ -13,8 +12,17 @@ const Typography = createGlobalStyle`
   src: url(font2);
 }
   html {
-    font-family: FrenchFries;
+    font-family: CandyFont;
     color: var(--black);
+  }
+  
+   .heroText{
+    font-family: CandyFont;
+  }
+  .features h2, .destacado {
+    font-family: CandyFont;
+    font-size:30px;
+    color: var(--red);
   }
   p, li {
     letter-spacing: 0.5px;
@@ -29,7 +37,7 @@ const Typography = createGlobalStyle`
     text-decoration-color: var(--red);
     /* Chrome renders this weird with this font, so we turn it off */
     text-decoration-skip-ink: none;
-     font-family: FrenchFries;
+     font-family: CandyFont;
   }
   mark, .mark {
     background: var(--yellow);
