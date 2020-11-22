@@ -191,7 +191,7 @@ export default function Index({ data }) {
             </span>
             <h3 className="subtitulos">Antojos</h3>
             <p>
-              Tienes algún sabor o combinación especial que se te antoje?, solo
+              ¿Tienes algún sabor o combinación especial que se te antoje?, solo
               tienes que contactarnos, nosotros lo haremos realidad para ti.
             </p>
           </div>
