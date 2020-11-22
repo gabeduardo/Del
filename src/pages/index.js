@@ -43,6 +43,9 @@ const IndexGrid = styled.div`
   }
   .cta2 {
     grid-area: cta2;
+    a {
+      color: var(--morado);
+    }
   }
 
   .features {
@@ -120,30 +123,25 @@ const IndexGrid = styled.div`
   }
 `
 
-export default function Index() {
-  const data = useStaticQuery(graphql`
-    query {
-      Image: file(relativePath: { eq: "HeroImage.jpg" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
+export default function Index({ data }) {
+  const datosInicio = data.datos.nodes
+  console.log(datosInicio)
+  const imagenAbout = datosInicio[0].link.image.asset.fluid
+
+  const { titulo } = datosInicio[0]
+  const { image } = datosInicio[0]
+  const { description } = datosInicio[0]
+  const { description2 } = datosInicio[0]
+  const url = datosInicio[0].link.slug.current
+  console.log(url)
   return (
     <>
       <IndexGrid>
         <div className="top">
-          <BackgroundImage
-            fluid={data.Image.childImageSharp.fluid}
-            className="hero"
-          >
+          <BackgroundImage fluid={image.asset.fluid} className="hero">
             <h1 className="heroText">CheesecakeDeli</h1>
             <p>Deliciosas Cheesecakes y Minicheesecakes </p>
           </BackgroundImage>
-
           <div className="cta cta1">
             <h2 className="heroText">Cheesecakes y Minicheesecakes </h2>
             <h2 className="heroText"> por encargo y con delivery </h2>
@@ -200,15 +198,49 @@ export default function Index() {
         </section>
 
         <section className="about">
-          <Img fluid={data.Image.childImageSharp.fluid} />
+          <Img fluid={imagenAbout} />
           <div className="about__details">
-            <h2 className="destacado">Destacada de este mes:</h2>
-            <p>Nuestra deliciosa cheesecake de nutella.</p>
-            <p>La más solicitada como acompañante en los desayunos</p>
-            <button type="button">Conozca más →</button>
+            <h2 className="destacado">{titulo}</h2>
+            <p>{description}</p>
+            <p>{description2}</p>
+
+            <Link to={`/cheesecake/${url}`}>
+              <button type="button">Conozca más →</button>
+            </Link>
           </div>
         </section>
       </IndexGrid>
     </>
   )
 }
+
+export const query = graphql`
+  query MyQueryInicio {
+    datos: allSanityAbout {
+      nodes {
+        titulo
+        description
+        description2
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        link {
+          image {
+            asset {
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+          slug {
+            current
+          }
+        }
+      }
+    }
+  }
+`

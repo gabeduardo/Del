@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import bg from '../assets/images/pattern.svg'
+import bg from '../assets/images/pattern4.svg'
 // import stripes from '../assets/images/stripes.svg'
 
 const GlobalStyles = createGlobalStyle`
