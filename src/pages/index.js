@@ -114,6 +114,9 @@ const IndexGrid = styled.div`
         'cta1'
         'cta2';
     }
+    .hero > p {
+      display: none;
+    }
   }
 `
 
@@ -142,12 +145,12 @@ export default function Index() {
           </BackgroundImage>
 
           <div className="cta cta1">
-            <p className="price">Cheesecakes por encargo </p>
-            <p>Tacos</p>
+            <h2 className="heroText">Cheesecakes y Minicheesecakes </h2>
+            <h2 className="heroText"> por encargo y con delivery </h2>
           </div>
           <div className="cta cta2">
-            <p className="price">Realizar pedido</p>
-            <p>Kombucha</p>
+            <Link to="/cheesecake">Catálogo</Link>
+            <Link to="/order">Realizar pedido</Link>
           </div>
         </div>
 
@@ -188,7 +191,7 @@ export default function Index() {
             <span className="icon">
               <ImTongue size="50px" />
             </span>
-            <h3 className="subtitulos">Antojo</h3>
+            <h3 className="subtitulos">Antojos</h3>
             <p>
               Tienes algún sabor o combinación especial que se te antoje?, solo
               tienes que contactarnos, nosotros lo haremos realidad para ti.

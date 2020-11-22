@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 import font from '../assets/fonts/EmilysCandy-Regular.ttf'
+import fontSub from '../assets/fonts/FjallaOne-Regular.ttf'
 
 const Typography = createGlobalStyle`
   @font-face {
@@ -8,14 +9,20 @@ const Typography = createGlobalStyle`
     src: url(${font});
   }
   @font-face {
-  font-family: fontBody;
-  src: url(font2);
+  font-family: Subtitulo;
+  src: url(${fontSub});
 }
   html {
     font-family: CandyFont;
     color: var(--black);
   }
   
+  .subtitulos{
+    font-family:Subtitulo;
+    font-size:20px;
+    color: var(--morado);
+    
+  }
    .heroText{
     font-family: CandyFont;
   }

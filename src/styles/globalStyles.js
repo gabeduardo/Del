@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     --pinky: #f7e3e1;
     --green: #197a01;
     --fondo:#d8fde7a8;
+    --morado: #680066;
   }
   html {
    
