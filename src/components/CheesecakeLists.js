@@ -14,7 +14,7 @@ const PizzaStyles = styled.div`
   display: grid;
   /* Take your row sizing not from the pizzaStyles div, but from the  CheeseCakeGridStyles grid */
   @supports not (grid-template-rows: subgrid) {
-    --rows: auto auto 1fr;
+    --rows: auto auto 245px;
   }
   grid-template-rows: var(--rows, subgrid);
   grid-row: span 3;
