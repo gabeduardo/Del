@@ -41,6 +41,7 @@ const NavStyles = styled.nav`
   }
 
   a {
+    color: var(--wine);
     font-size: 3rem;
     text-decoration: none;
     display:block &:hover {

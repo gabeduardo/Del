@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import bg from '../assets/images/pattern4.svg'
+import bg from '../assets/images/patternNs.svg'
 // import stripes from '../assets/images/stripes.svg'
 
 const GlobalStyles = createGlobalStyle`
@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     --green: #197a01;
     --fondo:#d8fde7a8;
     --morado: #680066;
+    --wine: #550A0A;
   }
   html {
    
