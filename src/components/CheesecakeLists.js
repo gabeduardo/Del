@@ -29,9 +29,9 @@ function Cheesecake({ cheesecale }) {
   return (
     <PizzaStyles>
       <Link to={`/cheesecake/${cheesecale.slug.current}`}>
-        <h2> {cheesecale.name}</h2>
+        <h2 className="letrasA"> {cheesecale.name}</h2>
       </Link>
-      <p>{cheesecale.category.map(categoria => categoria.name)}</p>
+      <h3>{cheesecale.category.map(categoria => categoria.name)}</h3>
       <Img fluid={cheesecale.image.asset.fluid} alt={cheesecale.name} />
     </PizzaStyles>
   )

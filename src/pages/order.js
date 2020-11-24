@@ -41,7 +41,7 @@ export default function OrderPage({ data }) {
       <OrderStyles onSubmit={submitOrder}>
         <fieldset disabled={loading}>
           <legend>Datos:</legend>
-          <label htmlFor="name">Nombre</label>
+          <label htmlFor="name">Nombre : </label>
           <input
             type="text"
             name="name"
@@ -49,7 +49,7 @@ export default function OrderPage({ data }) {
             value={values.name}
             onChange={updateValue}
           />
-          <label htmlFor="email">Correo</label>
+          <label htmlFor="email">Correo :</label>
           <input
             type="email"
             name="email"
@@ -58,7 +58,7 @@ export default function OrderPage({ data }) {
             onChange={updateValue}
           />
 
-          <label htmlFor="telefono">Teléfono</label>
+          <label htmlFor="telefono">Teléfono :</label>
           <input
             type="text"
             name="telefono"
@@ -98,9 +98,8 @@ export default function OrderPage({ data }) {
           />
         </fieldset>
         <fieldset disabled={loading}>
-          <h3>
-            {' '}
-            El monto total de tu orden es:{' '}
+          <h3 className="letrasA">
+            El monto total de tu orden es :
             {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <div>{error ? <p>Error: {error}</p> : ''}</div>

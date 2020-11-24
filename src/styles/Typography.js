@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 import font from '../assets/fonts/EmilysCandy-Regular.ttf'
 import fontSub from '../assets/fonts/FjallaOne-Regular.ttf'
+import fontB from '../assets/fonts/NerkoOne-Regular.ttf'
 
 const Typography = createGlobalStyle`
   @font-face {
@@ -12,6 +13,11 @@ const Typography = createGlobalStyle`
   font-family: Subtitulo;
   src: url(${fontSub});
 }
+ @font-face {
+    font-family: fontBody;
+    src: url(${fontB});
+    
+  }
   html {
     font-family: CandyFont;
     color: var(--black);
@@ -36,8 +42,11 @@ const Typography = createGlobalStyle`
   }
   h1,h2,h3,h4,h5,h6,label {
     font-family:fontBody;
-    
+    color:var(--wine);
     margin: 0;
+  }
+  .letrasA{
+    font-size:2rem;
   }
   a {
     color: var(--black);
