@@ -11,7 +11,7 @@ function generateOrderEmail({ order, total }) {
         .map(
           item => `<li>
         <img src="${item.thumbnail}" alt="${item.name}"/>
-        ${item.size} ${item.name} - ${item.price}
+         ${item.name} - ${item.price}
       </li>`
         )
         .join('')}
@@ -61,6 +61,24 @@ exports.handler = async (event, context) => {
     html: generateOrderEmail({ order: body.order, total: body.total }),
   }
 
+  const msgPedido = {
+    to: 'micheesecakedeli@gmail.com',
+    from: 'info@cheesecakedeli.com',
+    subject: `pedido recibido de ${body.email}`,
+    text: 'informacion sobre el pedido',
+    html: `<h3>la direccion y observaciones son: </h3>${body.description} <br>El teléfono del cliente es:  ${body.telefono} `,
+  }
+
+  sgMail.send(msgPedido).then(
+    () => {},
+    error => {
+      console.error(error)
+
+      if (error.response) {
+        console.error(error.response.body)
+      }
+    }
+  )
   try {
     await sgMail.send(msg)
 

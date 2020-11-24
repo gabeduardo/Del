@@ -62,6 +62,8 @@ export default function useCheese({ pizzas, values }) {
       total: formatMoney(calculateOrderTotal(order)),
       name: values.name,
       email: values.email,
+      description: values.description,
+      telefono: values.telefono,
     }
 
     // console.log(process.env.GATSBY_SERVERLESS_BASE)

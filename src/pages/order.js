@@ -20,6 +20,7 @@ export default function OrderPage({ data }) {
     name: '',
     email: '',
     telefono: '',
+    description: '',
   })
   const {
     order,
@@ -49,6 +50,7 @@ export default function OrderPage({ data }) {
             id="name"
             value={values.name}
             onChange={updateValue}
+            placeholder="tu nombre"
           />
           <label htmlFor="email">Correo :</label>
           <input
@@ -57,6 +59,7 @@ export default function OrderPage({ data }) {
             id="email"
             value={values.email}
             onChange={updateValue}
+            placeholder="tu correo"
           />
 
           <label htmlFor="telefono">Teléfono :</label>
@@ -66,6 +69,19 @@ export default function OrderPage({ data }) {
             id="telefono"
             value={values.telefono}
             onChange={updateValue}
+            placeholder="tu número de telefono"
+          />
+
+          <label htmlFor="description">Dirección :</label>
+
+          <textarea
+            type="text"
+            name="description"
+            id="description"
+            value={values.description}
+            onChange={updateValue}
+            placeholder="coloca tu direccion y observaciones que quieras realizar"
+            rows="2"
           />
         </fieldset>
 
