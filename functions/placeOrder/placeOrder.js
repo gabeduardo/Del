@@ -2,7 +2,7 @@ const sgMail = require('@sendgrid/mail')
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-function generateOrderEmail({ order, total }) {
+function generateOrderEmail({ order, total, telefono, description }) {
   return `<div>
     <h2>CheesecakeDeli</h2>
     <p>Gracias por realizar tu pedido, un miembro de nuestro equipo se pondrá pronto en contacto contigo.</p>
@@ -17,6 +17,12 @@ function generateOrderEmail({ order, total }) {
         .join('')}
     </ul>
     <p>El monto total de tu pedido es  <strong>$${total}</strong> </p>
+    <br>
+          <h3>Datos del cliente:</h3>
+          <p>Dirección y observaciones:${description}</p>
+          <br>
+          <p>teléfono: ${telefono}</p>
+
     <style>
         ul {
           list-style: none;
@@ -58,27 +64,14 @@ exports.handler = async (event, context) => {
     from: 'info@cheesecakedeli.com', // Use the email address or domain you verified above
     subject: 'Pedido Cheesecake Deli',
     text: 'pedido desde cheesecakedeli',
-    html: generateOrderEmail({ order: body.order, total: body.total }),
+    html: generateOrderEmail({
+      order: body.order,
+      total: body.total,
+      telefono: body.telefono,
+      description: body.description,
+    }),
   }
 
-  const msgPedido = {
-    to: 'micheesecakedeli@gmail.com',
-    from: 'info@cheesecakedeli.com',
-    subject: `pedido recibido de ${body.email}`,
-    text: 'informacion sobre el pedido',
-    html: `<h3>la direccion y observaciones son: </h3>${body.description} <br>El teléfono del cliente es:  ${body.telefono} `,
-  }
-
-  sgMail.send(msgPedido).then(
-    () => {},
-    error => {
-      console.error(error)
-
-      if (error.response) {
-        console.error(error.response.body)
-      }
-    }
-  )
   try {
     await sgMail.send(msg)
 
