@@ -62,6 +62,8 @@ export default function useCheese({ pizzas, values }) {
       total: formatMoney(calculateOrderTotal(order)),
       name: values.name,
       email: values.email,
+      description: values.description,
+      telefono: values.telefono,
     }
 
     // console.log(process.env.GATSBY_SERVERLESS_BASE)
@@ -80,13 +82,15 @@ export default function useCheese({ pizzas, values }) {
 
     // check if everything worked
     if (res.status >= 400 && res.status < 600) {
-      console.log('ERROR PAPU LINCE')
+      console.log('ERROR ')
       setLoading(false) // turn off loading
       setError(text.message)
     } else {
       // it worked!
       setLoading(false)
-      setMessage('Success! Come on down for your pizza')
+      setMessage(
+        'Orden realizada, pronto un miembro de nuestro equipo se pondrá en contacto contigo'
+      )
     }
   }
 

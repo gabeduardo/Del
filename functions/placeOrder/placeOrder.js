@@ -1,6 +1,8 @@
-const nodemailer = require('nodemailer')
+const sgMail = require('@sendgrid/mail')
 
-function generateOrderEmail({ order, total }) {
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+function generateOrderEmail({ order, total, telefono, description }) {
   return `<div>
     <h2>CheesecakeDeli</h2>
     <p>Gracias por realizar tu pedido, un miembro de nuestro equipo se pondrá pronto en contacto contigo.</p>
@@ -9,12 +11,18 @@ function generateOrderEmail({ order, total }) {
         .map(
           item => `<li>
         <img src="${item.thumbnail}" alt="${item.name}"/>
-        ${item.size} ${item.name} - ${item.price}
+         ${item.name} - ${item.price}
       </li>`
         )
         .join('')}
     </ul>
     <p>El monto total de tu pedido es  <strong>$${total}</strong> </p>
+    <br>
+          <h3>Datos del cliente:</h3>
+          <p>Dirección y observaciones:${description}</p>
+          <br>
+          <p>teléfono: ${telefono}</p>
+
     <style>
         ul {
           list-style: none;
@@ -23,27 +31,9 @@ function generateOrderEmail({ order, total }) {
   </div>`
 }
 
-// create a transport for nodemailer
-const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: 587,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-})
-
 exports.handler = async (event, context) => {
-  // Test send an email
-  // const info = await transporter.sendMail({
-  //   from: "Slick's Slices <slick@example.com>",
-  //   to: 'gemcirelli@gmail.com',
-  //   subject: 'New order!',
-  //   html: `<p>Your new pizza order is here!</p>`,
-  // })
-  // console.log(info)
   const body = JSON.parse(event.body)
-  console.log(body)
+
   // Validate the data coming in is correct
   const requiredFields = ['email', 'name', 'order']
 
@@ -69,15 +59,32 @@ exports.handler = async (event, context) => {
     }
   }
 
-  // send the email
-  const info = await transporter.sendMail({
-    from: "Slick's Slices <slick@example.com>",
-    to: `${body.name} <${body.email}>, orders@example.com`,
-    subject: 'Pedido CheesecakeDeli',
-    html: generateOrderEmail({ order: body.order, total: body.total }),
-  })
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: 'Success' }),
+  const msg = {
+    to: [`${body.email}`, 'micheesecakedeli@gmail.com'],
+    from: 'info@cheesecakedeli.com', // Use the email address or domain you verified above
+    subject: 'Pedido Cheesecake Deli',
+    text: 'pedido desde cheesecakedeli',
+    html: generateOrderEmail({
+      order: body.order,
+      total: body.total,
+      telefono: body.telefono,
+      description: body.description,
+    }),
+  }
+
+  try {
+    await sgMail.send(msg)
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Success' }),
+    }
+  } catch (e) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Se produjo un error al procesar tu orden`,
+      }),
+    }
   }
 }
