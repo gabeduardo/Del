@@ -19,6 +19,7 @@ export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    telefono: '',
   })
   const {
     order,
