@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
   }
 
   const msg = {
-    to: `${body.email}`,
+    to: [`${body.email}`, 'micheesecakedeli@gmail.com'],
     from: 'info@cheesecakedeli.com', // Use the email address or domain you verified above
     subject: 'Pedido Cheesecake Deli',
     text: 'pedido desde cheesecakedeli',
