@@ -16,7 +16,7 @@ function generateOrderEmail({ order, total, telefono, description }) {
         )
         .join('')}
     </ul>
-    <p>El monto total de tu pedido es  <strong>$${total}</strong> </p>
+    <p>El monto total de tu pedido es  <strong>${total}</strong> </p>
     <br>
           <h3>Datos del cliente:</h3>
           <p>Dirección y observaciones:${description}</p>

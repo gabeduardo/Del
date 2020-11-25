@@ -181,7 +181,7 @@ export default function Index({ data }) {
             </span>
             <h3 className="subtitulos">Consumo personal</h3>
             <p>
-              ¿Deseas realizar un pedido para matar un antojito?. Con nuestras
+              ¿Deseas realizar un pedido para calmar un antojito?. Con nuestras
               cheesecakes seguro que quedaras encantado
             </p>
           </div>

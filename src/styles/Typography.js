@@ -8,14 +8,17 @@ const Typography = createGlobalStyle`
   @font-face {
     font-family: CandyFont;
     src: url(${font});
+     font-display: swap;
   }
   @font-face {
   font-family: Subtitulo;
   src: url(${fontSub});
+   font-display: swap;
 }
  @font-face {
     font-family: fontBody;
     src: url(${fontB});
+     font-display: swap;
     
   }
   html {

@@ -89,7 +89,7 @@ export default function useCheese({ pizzas, values }) {
       // it worked!
       setLoading(false)
       setMessage(
-        'Orden realizada, pronto un miembro de nuestro equipo se pondrá en contacto contigo'
+        'Orden realizada, pronto un miembro de nuestro equipo se pondrá en contacto contigo. Gracias por preferirnos'
       )
     }
   }
