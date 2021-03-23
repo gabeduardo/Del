@@ -98,7 +98,7 @@ const IndexGrid = styled.div`
   }
 
   /* media queries */
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     .top {
       grid-template-areas:
         'hero hero'

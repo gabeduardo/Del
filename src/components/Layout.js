@@ -11,6 +11,10 @@ import Typography from '../styles/Typography'
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
+  min-width: 250px;
+  /* The auto keyword will give the right side a share of the remaining space.
+
+When combined with margin-left: auto, it will center the element, if a fixed width is defined. */
   margin: 8rem auto 4rem auto;
   margin-top: clamp(2rem, 10vw, 8rem);
   /* background-image: linear-gradient(
@@ -31,6 +35,14 @@ const SiteBorderStyles = styled.div`
   @media (max-width: 1100px) {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+  }
+
+  /*con esto prevengo que se conserve el margen a ambos lados,
+   ya que al hacerse muy pequeño algunas imagenes se salen de dichos margenes */
+
+  @media (max-width: 360px) {
+    margin-left: 0;
+    margin-right: 0;
   }
 `
 

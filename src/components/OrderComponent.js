@@ -14,7 +14,7 @@ export default function OrderComponent({ order, cake, removeFromOrder }) {
             <Img fluid={singleOrder.image.asset.fluid} />
             <h2>
               <span>{singleOrder.price / cheesecake.price} </span>
-              {singleOrder.name}{' '}
+              {singleOrder.name}
             </h2>
 
             <p>

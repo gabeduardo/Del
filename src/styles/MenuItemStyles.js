@@ -32,6 +32,11 @@ const MenuItemStyles = styled.div`
     box-shadow: none;
     line-height: 1rem;
   }
+  @media (max-width: 500px) {
+    .remove {
+      position: relative;
+    }
+  }
 `
 
 export default MenuItemStyles

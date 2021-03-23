@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import bg from '../assets/images/patternNs.svg'
+import bg from '../assets/images/pattern4.svg'
 // import stripes from '../assets/images/stripes.svg'
 
 const GlobalStyles = createGlobalStyle`
@@ -21,6 +21,11 @@ const GlobalStyles = createGlobalStyle`
     background-attachment: fixed;
     font-size: 10px;
     background-image: url(${bg});
+    box-sizing: border-box;
+
+
+
+   
   }
 
   body {
